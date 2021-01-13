@@ -69,9 +69,9 @@ public class HomeController {
 	   try (Scope scope = span.makeCurrent()) {
 	     
 		 // Set Name tag: This will be our unique way to search for a trace, by specific user at a specifc time in UI.
-			span.setAttribute("name",thename);
+			span.setAttribute("name",user.getName());
 		// Set Favorite Color tag: This will allow us to see traffic by "favcolor" in UI.
-			span.setAttribute("favcolor", thecolor);
+			span.setAttribute("favcolor", user.getColor());
         // ORIGINAL CODE
 			model.addAttribute("products", productService.getProducts());
 		// END ORIGINAL CODE
@@ -81,6 +81,7 @@ public class HomeController {
 	          span.end(); 
 	   	}
 
+    	  return "index";
     }
  
 }

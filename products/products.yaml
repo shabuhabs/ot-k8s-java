@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
       - name: products
-        image: shabushabu/javashop.products:1.0
+        image: shabushabu/javashop.products:1.1
         ports:
         - containerPort: 8020
         env:
@@ -36,6 +36,8 @@ spec:
             valueFrom: 
               fieldRef:
                 fieldPath: status.hostIP
+          - name: OTEL_EXPORTER_JAEGER_ENDPOINT
+            value: http://$(SIGNALFX_AGENT_HOST):9080/v1/trace
                 # livenessProbe:
                 #httpGet:
                 #path: /healthcheck
