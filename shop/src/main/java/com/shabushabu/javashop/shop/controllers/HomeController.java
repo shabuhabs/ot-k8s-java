@@ -63,7 +63,6 @@ public class HomeController {
 		// END ORIGINAL CODE
 	        //
 		//
-	    	}catch (Throwable t) {
 	        
 		} finally {
 	          span.end(); // closing the scope does not end the span, this has to be done manually
