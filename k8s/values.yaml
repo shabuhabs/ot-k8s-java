@@ -1,0 +1,26 @@
+monitors:
+- type: signalfx-forwarder
+  listenAddress: 0.0.0.0:9080
+  extraSpanTags:
+    environment: java-storefront-k8s
+- type: coredns
+  discoveryRule: kubernetes_pod_name =~ "coredns" && port == 9153
+  extraDimensions:
+    metric_source: "k8s-coredns"
+
+- type: kubernetes-events
+  whitelistedEvents:
+   - reason: Killing
+     involvedObjectKind: Pod
+   - reason: Created
+     involvedObjectKind: Pod
+   - reason: ScalingReplicaSet
+     involvedObjectKind: Deployment
+   - reason: SuccessfulCreate
+     involvedObjectKind: ReplicaSet
+   - reason: Scheduled
+     involvedObjectKind: Pod
+   - reason: Started
+     involvedObjectKind: Pod
+   - reason: Pulled
+     involvedObjectKind: Pod
