@@ -19,8 +19,8 @@ import io.opentelemetry.api.OpenTelemetry;
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.api.trace.Tracer;
 import io.opentelemetry.context.Scope;
-import io.opentelemetry.api.trace.attributes.SemanticAttributes;
-import io.opentelemetry.extension.auto.annotations.WithSpan;
+//import io.opentelemetry.api.trace.attributes.SemanticAttributes;
+//import io.opentelemetry.extension.auto.annotations.WithSpan;
 
 import com.shabushabu.javashop.shop.services.ProductService;
 
