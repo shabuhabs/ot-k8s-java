@@ -30,17 +30,12 @@
                 <version>Dalston.SR5</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
+	</dependency>
+
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
-	    <!--
-	<dependency>
-	    <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-	</dependency>
--->
 	<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -57,25 +52,27 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
     </dependency>
-    <dependency>
-	    <groupId>io.opentracing</groupId>
-	   <artifactId>opentracing-api</artifactId>
-	        <version>0.33.0</version>
-   </dependency>
-			
-			<!-- https://mvnrepository.com/artifact/io.opentracing/opentracing-util -->
-			<dependency>
-				    <groupId>io.opentracing</groupId>
-				        <artifactId>opentracing-util</artifactId>
-					    <version>0.33.0</version>
-				    </dependency>
-        <!--
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-	</dependency>
--->
+      <dependency>
+	            <groupId>io.opentelemetry</groupId>
+		          <artifactId>opentelemetry-api</artifactId>
+			        <version>0.13.1</version>
+</dependency>
+
+  <dependency>
+	        <groupId>io.opentelemetry</groupId>
+		      <artifactId>opentelemetry-context</artifactId>
+		            <version>0.13.1</version>
+		    </dependency>
+ <dependency>
+	       <groupId>io.opentelemetry</groupId>
+	             <artifactId>opentelemetry-extension-auto-annotations</artifactId>
+		           <version>0.10.0</version>
+			       </dependency>	 
+  <dependency>
+	        <groupId>io.opentelemetry</groupId>
+		      <artifactId>opentelemetry-sdk</artifactId>
+		            <version>0.13.1</version>
+			        </dependency>
     </dependencies>
 
     <build>
