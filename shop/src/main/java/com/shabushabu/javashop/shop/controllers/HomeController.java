@@ -1,5 +1,12 @@
 package com.shabushabu.javashop.shop.controllers;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,7 +49,9 @@ public class HomeController {
 			model.addAttribute("user", new User());
 			model.addAttribute("products", productService.getProducts());
 		// END ORIGINAL CODE
-	   
+	
+	 
+			 
 	        
 		} finally {
 	          span.end(); 
@@ -61,20 +70,40 @@ public class HomeController {
 	   	// Put the span into the current Context
 	   try (Scope scope = span.makeCurrent()) {
 	     
-		 // Set Name tag: This will be our unique way to search for a trace, by specific user at a specifc time in UI.
+		   	// Set Name tag: This will be our unique way to search for a trace, by specific user at a specifc time in UI.
 			span.setAttribute("name",user.getName());
-		// Set Favorite Color tag: This will allow us to see traffic by "favcolor" in UI.
+			// Set Favorite Color tag: This will allow us to see traffic by "favcolor" in UI.
 			span.setAttribute("favcolor", user.getColor());
-        // ORIGINAL CODE
+			// ORIGINAL CODE
 			model.addAttribute("products", productService.getProducts());
-		// END ORIGINAL CODE
-	   
-	        
-		} finally {
-	          span.end(); 
-	   	}
+			// END ORIGINAL CODE
+			try {
+				URL url = new URL("https://shabuhabs-foo.azurewebsites.net/api/Foo?name=" + user.getName());
+				HttpURLConnection httpCon = (HttpURLConnection) url.openConnection();
+		   
+				InputStream in = new BufferedInputStream(httpCon.getInputStream());
+				readStream(in);
+				httpCon.disconnect();  
+		   } catch(Exception e) {
+			   
+		   }
+		   
+	   } finally {
+		   span.end(); 
+	   }
 
-    	  return "index";
+	   return "index";
     }
+   
+   private String readStream(InputStream is) throws IOException {
+	  
+	      ByteArrayOutputStream bo = new ByteArrayOutputStream();
+	      int i = is.read();
+	      while(i != -1) {
+	        bo.write(i);
+	        i = is.read();
+	      }
+	      return bo.toString();
+	}
  
 }
